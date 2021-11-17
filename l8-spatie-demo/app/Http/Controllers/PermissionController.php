@@ -25,7 +25,6 @@ class PermissionController extends Controller
         $this->middleware('permission:permission-edit',['only'=>['edit','update']]);
 
         $this->middleware('permission:permission-delete',['only'=>['delete','destroy']]);
-
     }
 
     /**

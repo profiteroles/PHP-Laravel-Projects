@@ -1,0 +1,8 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+body{
+    background-color: #1f669c;
+    background-image: url("https://www.transparenttextures.com/patterns/brick-wall.png");
+}

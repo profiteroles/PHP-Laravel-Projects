@@ -17,14 +17,14 @@ class Todolist extends Seeder
             [
                 'id' => 1,
                 'title' => 'Welcome to your todolist!',
-                'content' => 'Start Typing'
+                'content' => 'Start adding new list'
             ], [
                 'id' => 2,
-                'title' => 'Hit the + button to add a new item.',
+                'title' => "Erol's To Do List",
                 'content' => ''
             ], [
                 'id' => 3,
-                'title' => '<-- Hit this to delete an item.',
+                'title' => 'Adrian\'s List',
                 'content' => ''
             ]
         ];

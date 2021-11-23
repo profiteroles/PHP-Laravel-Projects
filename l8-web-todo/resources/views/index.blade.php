@@ -16,7 +16,7 @@
 {{--Table--}}
 <x-table>
     @foreach($todolists as $list)
-        <x-list-item item="{{$list->title}}">
+        <x-list-item item="{{$list->title}}" priority="{{$list->priority}}">
             <form action="{{route('destroy',$list->id)}}" method="POST">
                 @csrf
                 @method('delete')

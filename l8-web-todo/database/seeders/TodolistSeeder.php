@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-class Todolist extends Seeder
+class TodolistSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,15 +17,14 @@ class Todolist extends Seeder
             [
                 'id' => 1,
                 'title' => 'Welcome to your todolist!',
-                'content' => 'Start adding new list'
+                'priority'=>true
             ], [
                 'id' => 2,
                 'title' => "Erol's To Do List",
-                'content' => ''
             ], [
                 'id' => 3,
                 'title' => 'Adrian\'s List',
-                'content' => ''
+
             ]
         ];
 

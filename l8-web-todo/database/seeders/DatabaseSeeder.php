@@ -14,7 +14,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call([Todolist::class]);
+        $this->call([
+            TodolistSeeder::class,
+            TaskSeeder::class,
+        ]);
         // \App\Models\User::factory(10)->create();
     }
 }

@@ -16,5 +16,6 @@ use Illuminate\Support\Facades\Route;
 
 //Route::resource('/', TodolistController::class);
 Route::get('/', [TodolistController::class, 'index'])->name('index');
+Route::get('/{todolist:id}', [TodolistController::class, 'show'])->name('show');
 Route::post('/', [TodolistController::class, 'store'])->name('store');
 Route::delete('/{todolist:id}', [TodolistController::class, 'destroy'])->name('destroy');

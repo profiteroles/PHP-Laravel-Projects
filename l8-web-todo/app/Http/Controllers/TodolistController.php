@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Task;
 use App\Models\Todolist;
 use Illuminate\Http\Request;
 
@@ -16,6 +17,13 @@ class TodolistController extends Controller
     {
         $todolists = Todolist::all();
         return view('index',compact('todolists'));
+    }
+
+    public function show(Todolist $todolist)
+    {
+
+        $tasks = Task::where('todolist_id', $todolist->id)->get();
+        return view('show',compact('tasks'));
     }
 
     /**

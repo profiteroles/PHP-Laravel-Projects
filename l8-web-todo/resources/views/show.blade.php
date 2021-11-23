@@ -1,9 +1,9 @@
 <x-app>
     {{--Table--}}
     <x-table>
-        @foreach($todolists as $list)
-            <x-list-item item="{{$list->title}}" href="{{route('show',$list->id)}}">
-                <form action="{{route('destroy',$list->id)}}" method="POST">
+        @foreach($tasks as $task)
+            <x-list-item item="{{$task->task}}">
+                <form action="{{route('destroy',$task->id)}}" method="POST">
                     @csrf
                     @method('delete')
                     <x-checkbox/>
@@ -12,4 +12,3 @@
         @endforeach
     </x-table>
 </x-app>
-

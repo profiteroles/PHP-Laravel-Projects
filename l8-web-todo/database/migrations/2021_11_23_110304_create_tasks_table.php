@@ -15,9 +15,9 @@ class CreateTasksTable extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
-            $table->string('task',512);
+            $table->string('task',256);
             $table->boolean('priority')->default(false);
-            $table->foreignId('todolist_id');
+            $table->unsignedBigInteger('todolist_id');
             $table->timestamps();
         });
     }

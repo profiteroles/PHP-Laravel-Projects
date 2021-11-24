@@ -9,7 +9,7 @@ class Task extends Model
 {
     use HasFactory;
 
-    protected $fillable =['task'];
+    protected $fillable =['task','todolist_id','priority'];
 
     public function todolist()
     {

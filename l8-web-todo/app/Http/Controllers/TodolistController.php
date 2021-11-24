@@ -16,48 +16,61 @@ class TodolistController extends Controller
     public function index()
     {
         $todolists = Todolist::all();
-        return view('index',compact('todolists'));
+        return view('index', compact('todolists'));
     }
 
     public function show(Todolist $todolist)
     {
-
-        $tasks = Task::where('todolist_id', $todolist->id)->get();
-        return view('show',compact('tasks','todolist'));
+//        dd($todolist);
+        $tasks = $todolist->tasks()->get();
+        return view('show', compact('tasks', 'todolist'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         Todolist::create($request->validate([
-            'title'=>'required|string|max:128',
+            'title' => 'required|string|max:128',
         ]));
 
         return back()->with('success', 'Congrats! You got some work to do!');
     }
 
+    public function addtask(Request $request)
+    {
+//        ddd($request->path());
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'todolist_id'=> 'required'
+        ]);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Todolist  $todolist
-     * @return \Illuminate\Http\Response
-     */
+            Task::create([
+                'task'=>$request->title,
+                'todolist_id'=>$request->path()
+            ]);
+
+//        Task::create([
+//            'task'=>'new task',
+//            'todolist_id'=>6
+//            ]);
+
+        return back()->with('success', 'Congrats! You got some work to do!');
+    }
+
     public function update(Request $request, Todolist $todolist)
     {
-        //
+        dd($request);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Todolist  $todolist
+     * @param \App\Models\Todolist $todolist
      * @return \Illuminate\Http\Response
      */
     public function destroy(Todolist $todolist)
@@ -68,8 +81,7 @@ class TodolistController extends Controller
 
     public function remove(Task $task)
     {
-        dd($task);
-        Task::where('task_id', $task->id);
+       $task->delete();
         return back();
     }
 }

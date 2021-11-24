@@ -14,6 +14,5 @@ class Task extends Model
     public function todolist()
     {
         return $this->belongsTo(Todolist::class);
-//        $this->hasMany(Todolist::class, 'todo_items','todolist_id','task_id');
     }
 }

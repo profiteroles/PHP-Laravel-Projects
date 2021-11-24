@@ -1,4 +1,4 @@
-<x-app>
+<x-app name="What to DO!">
     {{--Table--}}
     <x-table>
         @foreach($todolists as $list)

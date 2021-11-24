@@ -1,8 +1,9 @@
 <th x-data={showInput:false}>
     <div x-show="showInput" class="form-control">
         <div class="relative">
-            <form action="{{route('store')}}" method="POST" autocomplete="off">
+            <form action="{{route('addtask',1)}}" method="POST" autocomplete="off">
                 @csrf
+                <input type="text" name="todolist_id" hidden value="1">
                 <input type="text" name="title" placeholder="Add New One"
                        class="w-full pr-16 input input-primary input-bordered">
                 <button x-on:click="showInput=!showInput" type="submit"

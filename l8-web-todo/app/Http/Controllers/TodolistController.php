@@ -23,7 +23,7 @@ class TodolistController extends Controller
     {
 
         $tasks = Task::where('todolist_id', $todolist->id)->get();
-        return view('show',compact('tasks'));
+        return view('show',compact('tasks','todolist'));
     }
 
     /**
@@ -34,8 +34,8 @@ class TodolistController extends Controller
      */
     public function store(Request $request)
     {
-        $newList = Todolist::create($request->validate([
-            'title'=>'required|string|max:255',
+        Todolist::create($request->validate([
+            'title'=>'required|string|max:128',
         ]));
 
         return back()->with('success', 'Congrats! You got some work to do!');
@@ -64,5 +64,12 @@ class TodolistController extends Controller
     {
         $todolist->delete();
         return back()->with('success', 'Well Done! You got one less work');
+    }
+
+    public function remove(Task $task)
+    {
+        dd($task);
+        Task::where('task_id', $task->id);
+        return back();
     }
 }

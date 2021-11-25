@@ -67,6 +67,11 @@ class TodolistController extends Controller
         dd($request);
     }
 
+    public function updateTask(Request $request, Todolist $todolist, Task $task)
+    {
+        dd($request);
+    }
+
     /**
      * Remove the specified resource from storage.
      *

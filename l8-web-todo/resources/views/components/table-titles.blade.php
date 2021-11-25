@@ -1,4 +1,4 @@
-@props(['delbtn'=>false, 'title'=>'title'])
+@props(['delbtn'=>false, 'title'=>'title','addAction'])
 <tr>
     @if($delbtn)
         <th>
@@ -22,5 +22,5 @@
         <th></th>
     @endif
     <th>{{$title}}</th>
-    <x-addbtn/>
+    <x-addbtn addAction="{{$addAction}}"/>
 </tr>

@@ -2,14 +2,14 @@
     <div class="overflow-x-auto">
         <table class="table w-full">
             <thead>
-            <x-table-titles title="{{$slot->isNotEmpty() ? 'title':'Press + to Add New Item'}}" delbtn="{{$slot ?? false}}"/>
+            <x-table-titles addAction="{{$addAction}}" title="{{$slot->isNotEmpty() ? 'title':'Press + to Add New Item'}}" delbtn="{{$slot ?? false}}" />
             </thead>
             <tbody>
             {{$slot}}
             </tbody>
             <tfoot>
             @if($slot->isNotEmpty())
-            <x-table-titles/>
+            <x-table-titles addAction="{{$addAction}}"/>
             @endif
             </tfoot>
         </table>

@@ -1,7 +1,8 @@
+@props(['addAction'=>''])
 <th x-data={showInput:false}>
     <div x-show="showInput" class="form-control">
         <div class="relative">
-            <form action="{{route('store')}}" method="POST" autocomplete="off">
+            <form action="{{$addAction}}" method="POST" autocomplete="off">
                 @csrf
                 <input type="text" name="title" placeholder="Add New One"
                        class="w-full pr-16 input input-primary input-bordered">

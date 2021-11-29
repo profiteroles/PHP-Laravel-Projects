@@ -16,15 +16,14 @@ class TodolistSeeder extends Seeder
         $seedList = [
             [
                 'id' => 1,
-                'title' => 'Welcome to your todolist!',
+                'title' => 'List 1',
                 'priority'=>true
             ], [
                 'id' => 2,
-                'title' => "Erol's To Do List",
+                'title' => "Erol's List",
             ], [
                 'id' => 3,
                 'title' => 'Adrian\'s List',
-
             ]
         ];
 

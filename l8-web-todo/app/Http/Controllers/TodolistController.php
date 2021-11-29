@@ -19,12 +19,11 @@ class TodolistController extends Controller
         return view('index', compact('todolists'));
     }
 
-    public function show(Todolist $todolist)
-    {
-//        dd($todolist);
-        $tasks = $todolist->tasks()->get();
-        return view('show', compact('tasks', 'todolist'));
-    }
+//    public function show(Todolist $todolist)
+//    {
+//        $tasks = $todolist->tasks()->get();
+//        return view('show', compact('tasks', 'todolist'));
+//    }
 
     /**
      * Store a newly created resource in storage.
@@ -43,33 +42,33 @@ class TodolistController extends Controller
 
     public function addtask(Request $request)
     {
-//        ddd($request->path());
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'todolist_id'=> 'required'
-        ]);
-
-            Task::create([
-                'task'=>$request->title,
-                'todolist_id'=>$request->path()
-            ]);
-
-//        Task::create([
-//            'task'=>'new task',
-//            'todolist_id'=>6
-//            ]);
-
-        return back()->with('success', 'Congrats! You got some work to do!');
+//        $request->validate(['title' => 'required|string|max:255']);
+//
+//       $task = Task::create([
+//            'task' => $request->title,
+//            'todolist_id' => $request->path()
+//        ]);
+//
+//        return back()->with('success', 'Congrats! You got some work to do!');
     }
 
-    public function update(Request $request, Todolist $todolist)
+    public function update(Request $request, $id)
     {
-        dd($request);
+        $todolist = Todolist::find($id);
+        $todolist->priority = $request->priority == 'on' ? '1' : '0';
+        $todolist->save();
+        return back()->with('success', ' The List has Been' . $request->priority == 'on' ? 'Prioritised' : 'Unprioritised');
     }
 
-    public function updateTask(Request $request, Todolist $todolist, Task $task)
+    public function updateTask(Request $request, int $id)
     {
-        dd($request);
+//        Why keeps coming back to here...
+//        ddd($request);
+//        $task = Task::find($id);
+//        $task->priority = $request->priority == 'on' ? '1': '0';
+//        $task->save();
+//
+//        return back()->with('success', ' Task has'. $request->priority == 'on' ? 'Prioritised': 'Unprioritised');
     }
 
     /**
@@ -78,15 +77,24 @@ class TodolistController extends Controller
      * @param \App\Models\Todolist $todolist
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Todolist $todolist)
+    public function destroy($id)
     {
+        $todolist = Todolist::find($id);
         $todolist->delete();
-        return back()->with('success', 'Well Done! You got one less work');
+        return back()->with('success', 'Well Done! You got one less List');
     }
 
     public function remove(Task $task)
     {
-       $task->delete();
-        return back();
+//        $task->delete();
+//        return back()->with('success', 'Well Done! You got one less work');
     }
+
+    public function deleteAllList()
+    {
+        Todolist::destroy(Todolist::all());
+        Task::destroy(Task::all());
+        return back()->with('success', 'You\'ve Deleted All of Your List');
+    }
+
 }

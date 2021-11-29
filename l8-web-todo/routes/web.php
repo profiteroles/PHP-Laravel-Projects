@@ -15,12 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('/', TodolistController::class);
 Route::get('/', [TodolistController::class, 'index'])->name('index');
-Route::get('/{todolist:id}', [TodolistController::class, 'show'])->name('show');
-Route::post('/', [TodolistController::class, 'store'])->name('store');
-Route::delete('/{todolist:id}', [TodolistController::class, 'destroy'])->name('destroy');
-Route::delete('/task/{task:id}', [TodolistController::class, 'remove'])->name('taskRemove');
-Route::post('/{todolist:id}', [TodolistController::class, 'addtask'])->name('addtask');
+Route::resource('/lists', TodolistController::class);
+Route::resource('/lists/{todolist:id}/tasks',TaskController::class);
 
-Route::patch('/', [TodolistController::class, 'update'])->name('update');
+Route::delete('/', [TodolistController::class, 'deleteAllList'])->name('deleteAllList');
+Route::delete('/lists/{todolist:id}/tasks', [TaskController::class, 'deleteAll'])->name('deleteAll');
+

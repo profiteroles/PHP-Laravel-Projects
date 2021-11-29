@@ -1,9 +1,10 @@
-@props(['addAction'=>''])
+@props(['addAction'=>'', 'list_id'=> ''])
 <th x-data={showInput:false}>
     <div x-show="showInput" class="form-control">
         <div class="relative">
             <form action="{{$addAction}}" method="POST" autocomplete="off">
                 @csrf
+                <input type="number" value="{{}}" name="todolist_id" hidden>
                 <input type="text" name="title" placeholder="Add New One"
                        class="w-full pr-16 input input-primary input-bordered">
                 <button x-on:click="showInput=!showInput" type="submit"

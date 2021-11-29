@@ -2,7 +2,7 @@
     <div class="overflow-x-auto">
         <table class="table w-full">
             <thead>
-            <x-table-titles addAction="{{$addAction}}" title="{{$slot->isNotEmpty() ? 'title':'Press + to Add New Item'}}" delbtn="{{$slot ?? false}}" />
+            <x-table-titles addAction="{{$addAction}}" title="{{$slot->isNotEmpty() ? 'title':'Press + to Add New Item'}}" delbtn="{{$slot ?? false}}" id="{{$id ?? ''}}" />
             </thead>
             <tbody>
             {{$slot}}

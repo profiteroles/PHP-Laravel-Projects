@@ -54,7 +54,6 @@ class TaskSeeder extends Seeder
                 'task' => 'Second 6th Task',
                 'todolist_id'=>3
             ],
-
         ];
 
         foreach ($taskSeeder as $seed){

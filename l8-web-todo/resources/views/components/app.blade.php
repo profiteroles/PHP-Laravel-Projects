@@ -10,8 +10,6 @@
 </head>
 <body class="w-full h-screen "
       style="background-image: url('https://www.transparenttextures.com/patterns/brick-wall.png');">
-{{--NavBar--}}
-<x-navbar name="{{$name}}"/>
 {{$slot}}
 </body>
 </html>

@@ -9,8 +9,9 @@
                 </svg>
             </a>
         </div>
-        <div class="flex-1 px-2 mx-2">
-            <span class="text-lg font-bold font-mono">{{$name}}</span>
+        <div class="flex px-2 mx-2">
+            <span class="flex-initial text-lg font-bold font-mono">{{$title}}</span>
         </div>
+        {{$slot}}
     </div>
 </div>

@@ -8,95 +8,44 @@ use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index($id)
     {
-        //
+        $todolist = Todolist::find($id);
+        $tasks = $todolist->tasks()->get();
+        return view('tasks.show', compact(['tasks','todolist']));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function store(Request $request, $id)
     {
-        //
-    }
+        $request->validate(['title' => 'required|string|max:255']);
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-    $valid = $request->validate([
-            'title' => 'required|string|max:255',
-            'todolist_id'=> 'required'
+        $task = Task::create([
+            'task' => $request->title,
+            'todolist_id' => $id
         ]);
-
-        dd(integerValue($request->todolist_id));
-
-//        $newTask =[
-//            'task' => $request->title,
-//            'todolist_id' => int($request->todolist_id)
-//        ];
-
-
-            Task::create($newTask);
-
 
         return back()->with('success', 'Congrats! You got some work to do!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param \App\Models\Task $task
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Task $task)
+    public function update(Request $request, $list_id,$id)
     {
-        //
+        $task = Task::find($id);
+        $task->priority = $request->priority == 'on' ? '1': '0';
+        $task->save();
+
+        return back()->with('success', ' Task has'. $request->priority == 'on' ? 'Prioritised': 'Unprioritised');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param \App\Models\Task $task
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Task $task)
+    public function destroy($list_id,$id)
     {
-        //
+        $task = Task::find($id);
+        $task->delete();
+        return back()->with('success', 'Well Done! You got one less work');
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Task $task
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Task $task)
+    public function deleteAll($id)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param \App\Models\Task $task
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Task $task)
-    {
-        //
+        $tasks = Task::where('todolist_id', $id)->get();
+        Task::destroy($tasks);
+        return back()->with('success', 'You\'ve Deleted All of Your Tasks');
     }
 }

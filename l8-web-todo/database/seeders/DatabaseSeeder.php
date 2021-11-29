@@ -18,6 +18,5 @@ class DatabaseSeeder extends Seeder
             TodolistSeeder::class,
             TaskSeeder::class,
         ]);
-        // \App\Models\User::factory(10)->create();
     }
 }

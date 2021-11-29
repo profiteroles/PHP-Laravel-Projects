@@ -26,6 +26,7 @@ services:
             - redis
             - meilisearch
             - selenium
+            - mongodb
     mysql:
         image: 'mysql/mysql-server:8.0'
         ports:
@@ -103,4 +104,4 @@ volumes:
     sailmeilisearch:
         driver: local
     sailmongodb:
-            driver: local
+        driver: local

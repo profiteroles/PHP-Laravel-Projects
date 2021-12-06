@@ -3,16 +3,19 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+//use Illuminate\Database\Eloquent\Model;
+use Jenssegers\Mongodb\Eloquent\Model as Model;
 
 class Todolist extends Model
 {
-    use HasFactory;
+
+    protected $connection = 'mongodb';
+    protected $collection = 'todolists';
 
     protected $fillable = ['title','priority'];
 
     public function tasks(){
+//        return $this->embedsMany(Task::class, 'local_key');
         return $this->hasMany(Task::class);
-//        return $this->belongsTo(Task::class, 'todo_items','todolist_id','task_id');
     }
 }

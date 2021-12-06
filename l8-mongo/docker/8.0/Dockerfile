@@ -41,10 +41,16 @@ RUN apt-get update \
     && apt-get install -y postgresql-client \
     && apt-get -y autoremove \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+RUN curl -O https://pear.php.net/go-pear.phar
+RUN php go-pear.phar
+
+RUN pecl channel-update pecl.php.net
 RUN pecl install mongodb
-RUN echo "extension=mongodb.so" > /etc/php/8.0/php.ini
+
+RUN echo "extension=mongodb.so" >> /etc/php/8.0/php.ini
+RUN echo "extension=mongodb.so" > /etc/php/8.0/cli/php.ini
 
 RUN setcap "cap_net_bind_service=+ep" /usr/bin/php8.0
 
